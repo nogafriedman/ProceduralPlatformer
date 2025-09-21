@@ -63,6 +63,7 @@ public class GameManager : MonoBehaviour
         if (isGameOver) return;
         isGameOver = true;
         AudioManager.Instance.PlayGameOver();
+        ReloadScene();
         
         if (buttonsGroup) buttonsGroup.SetActive(false);
         var player = FindFirstObjectByType<PlayerController>();
@@ -73,9 +74,9 @@ public class GameManager : MonoBehaviour
             {
                 rb.linearVelocity = Vector2.zero;
                 rb.angularVelocity = 0f;
-                rb.simulated = false;   // stops gravity and collisions until change scene
+                rb.simulated = false;
             }
-            player.enabled = false;     // ignore input movement code
+            player.enabled = false;
         }
         if (scoreManager == null)
         {
@@ -100,7 +101,7 @@ public class GameManager : MonoBehaviour
     private IEnumerator GameOverFlow()
     {
         yield return new WaitForSeconds(gameOverHoldSeconds);
-        SceneManager.LoadScene(endSceneName);   // ending Scene
+        // SceneManager.LoadScene(endSceneName);   // ending Scene
     }
 }
 
