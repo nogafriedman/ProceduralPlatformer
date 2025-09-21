@@ -1,9 +1,11 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
 
+    public static event Action<GameObject, float> OnPlatformSpawned;
     private float screenHalfWidth;
 
     [Header("Player")]
@@ -12,10 +14,10 @@ public class SpawnManager : MonoBehaviour
 
     [Header("Walls")]
     [SerializeField] private GameObject wallPrefab;
-    [SerializeField] private float wallHeight;
     [SerializeField] private int initialWallCount = 4;
     [SerializeField] private float wallSpawnAhead = 10f;
     [SerializeField] private float wallXPadding = 0.5f;
+    private float wallHeight;
 
     [Header("Platforms")]
     [SerializeField] public GameObject[] platformPrefabs;
@@ -101,7 +103,7 @@ public class SpawnManager : MonoBehaviour
             platformXMin = halfPlatformWidth;
             platformXMax = -halfPlatformWidth;
 
-            var x = Random.Range(platformXMin, platformXMax);
+            var x = UnityEngine.Random.Range(platformXMin, platformXMax);
 
             var platform = Instantiate(chosenPrefab, new Vector3(x, nextPlatformY, 0f), Quaternion.identity, transform);
 
@@ -145,7 +147,7 @@ public class SpawnManager : MonoBehaviour
 
         var chosenPrefab = GetRandomPlatformPrefab();
 
-        var x = Random.Range(platformXMin, platformXMax);
+        var x = UnityEngine.Random.Range(platformXMin, platformXMax);
         var newPlatform = Instantiate(chosenPrefab, new Vector3(x, nextPlatformY, 0f), Quaternion.identity, transform);
         platformPool.Add(newPlatform);
 
@@ -158,10 +160,9 @@ public class SpawnManager : MonoBehaviour
             SpawnBoard(indexTag.floorIndex, newPlatform.transform);
         }
 
-        nextPlatformY += platformSpacing;
+        OnPlatformSpawned?.Invoke(newPlatform, nextPlatformY);
 
-        foreach (var s in powerUpSpawners)
-            s.NotifyCreatedFloor(newPlatform, nextPlatformY);
+        nextPlatformY += platformSpacing;
     }
 
     private GameObject GetRandomPlatformPrefab()
@@ -172,7 +173,7 @@ public class SpawnManager : MonoBehaviour
             totalChance += chance;
         }
 
-        float randomValue = Random.Range(0f, totalChance);
+        float randomValue = UnityEngine.Random.Range(0f, totalChance);
         float cumulativeChance = 0f;
 
         for (int i = 0; i < platformPrefabs.Length; i++)
