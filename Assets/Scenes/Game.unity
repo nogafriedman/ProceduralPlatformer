@@ -172,7 +172,6 @@ MonoBehaviour:
   platformPrefabs:
   - {fileID: 3954955296957863119, guid: f48a47176e7dad64eb74bc4bf4256a8f, type: 3}
   - {fileID: 3529376136843810074, guid: 789afda052812764c8563383c15c1101, type: 3}
-  - {fileID: 5627351571208795576, guid: 5538be88c5cd98343ab80c9346da078b, type: 3}
   - {fileID: 3185625097653772584, guid: 3696de53c431ae54398ed19cf1a258fe, type: 3}
   initialPlatformCount: 30
   platformSpawnAhead: 10
@@ -182,7 +181,6 @@ MonoBehaviour:
   - 60
   - 15
   - 10
-  - 15
   powerUpSpawners: []
   boardPrefab: {fileID: 3972503974204096241, guid: 2cd6bc9841533564592f206eadcda298, type: 3}
 --- !u!1001 &98323880
@@ -423,19 +421,6 @@ MonoBehaviour:
   jetpackMaxVerticalSpeed: 8
   jetpackGravityScale: 0.25
   inputProvider: {fileID: 2005528611}
---- !u!114 &106243645
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 106243625}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8ba4252c135e3d45999b898da9b498b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  multiplier: 1
 --- !u!1 &389515261
 GameObject:
   m_ObjectHideFlags: 0
@@ -789,6 +774,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   durationSeconds: 8
+  _consumed: 0
 --- !u!50 &828602199
 Rigidbody2D:
   serializedVersion: 5
@@ -1828,12 +1814,13 @@ MonoBehaviour:
   powerUpPrefabs:
   - {fileID: 1567757820}
   spawnEveryPlatforms: 20
+  nextSpawnFloor: 20
   platformLayers:
-    serializedVersion: 2
     m_Bits: 64
   verticalOffset: 0.25
   horizontalPadding: 0.3
   overlapCheckSize: {x: 0.35, y: 0.35}
+  _powerupInstance: {fileID: 0}
 --- !u!4 &1518386180
 Transform:
   m_ObjectHideFlags: 0
@@ -1893,6 +1880,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbf6dbe351a356148ab893cc6c0477f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _consumed: 0
   speedEffect: {fileID: 587577617666023954, guid: 460c4503fa03bd14ca1f914183017a6c, type: 3}
 --- !u!4 &1700467894 stripped
 Transform:
@@ -2651,12 +2639,13 @@ MonoBehaviour:
   powerUpPrefabs:
   - {fileID: 828602197}
   spawnEveryPlatforms: 50
+  nextSpawnFloor: 20
   platformLayers:
-    serializedVersion: 2
     m_Bits: 64
   verticalOffset: 0.25
   horizontalPadding: 0.3
   overlapCheckSize: {x: 0.35, y: 0.35}
+  _powerupInstance: {fileID: 0}
 --- !u!4 &2045949365
 Transform:
   m_ObjectHideFlags: 0
@@ -3344,7 +3333,7 @@ PrefabInstance:
       objectReference: {fileID: 6734045621501434544, guid: da2d66c69def2a3498c36a362403debc, type: 3}
     - target: {fileID: 8160106388089383520, guid: e4ca11e035d4a9949bc2bce2507044da, type: 3}
       propertyPath: m_SortingLayer
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8160106388089383520, guid: e4ca11e035d4a9949bc2bce2507044da, type: 3}
       propertyPath: m_SortingOrder
@@ -3397,9 +3386,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8426826470317143878, guid: e4ca11e035d4a9949bc2bce2507044da, type: 3}
       insertIndex: -1
       addedObject: {fileID: 106243639}
-    - targetCorrespondingSourceObject: {fileID: 8426826470317143878, guid: e4ca11e035d4a9949bc2bce2507044da, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 106243645}
   m_SourcePrefab: {fileID: 100100000, guid: e4ca11e035d4a9949bc2bce2507044da, type: 3}
 --- !u!1001 &6380479479554128263
 PrefabInstance:
