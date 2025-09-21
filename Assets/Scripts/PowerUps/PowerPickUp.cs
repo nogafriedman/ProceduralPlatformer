@@ -13,11 +13,15 @@ public abstract class PowerUpPickup : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+            Debug.Log("Trigger entered by: " + other.name);
+
+
         if (_consumed) return;
         if (!other.CompareTag("Player")) return;
 
         if (other.TryGetComponent<PlayerController>(out var player))
         {
+                    Debug.Log("Applying power-up to: " + player.name);
             ApplyPowerUp(player);
         }
 

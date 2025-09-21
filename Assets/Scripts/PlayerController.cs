@@ -191,6 +191,25 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.TryGetComponent<IAbility>(out var ability))
+        {
+            Debug.Log("Picked up: " + ability.GetType().Name);
+
+            ApplyAbility(ability, 5f);
+
+            Destroy(col.gameObject);
+        }
+    }
+
+    public IEnumerator DeactivateAfter(IAbility ability, float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        ability.Deactivate(this);
+    }
+
+
     public void ApplyAbility(IAbility ability, float duration)
     {
         ability.Activate(this, duration);

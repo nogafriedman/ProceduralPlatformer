@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class JetpackAbility : IAbility
 {
     private bool _active;
@@ -8,20 +6,18 @@ public class JetpackAbility : IAbility
 
     public void Activate(PlayerController player, float duration)
     {
+        if (_active) return;
+
         _active = true;
         player.EnableJetpack(true);
-        player.StartCoroutine(DeactivateAfter(player, duration));
+        player.StartCoroutine(player.DeactivateAfter(this, duration));
     }
 
     public void Deactivate(PlayerController player)
     {
+        if (!_active) return;
+
         _active = false;
         player.EnableJetpack(false);
-    }
-
-    private System.Collections.IEnumerator DeactivateAfter(PlayerController player, float duration)
-    {
-        yield return new WaitForSeconds(duration);
-        Deactivate(player);
     }
 }

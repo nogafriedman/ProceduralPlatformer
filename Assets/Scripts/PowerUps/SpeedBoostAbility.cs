@@ -1,4 +1,3 @@
-using UnityEngine;
 public class SpeedBoostAbility : IAbility
 {
     private readonly float _multiplier;
@@ -13,20 +12,20 @@ public class SpeedBoostAbility : IAbility
 
     public void Activate(PlayerController player, float duration)
     {
+        if (_active) return;
+
         _active = true;
         player.MovementMultiplier *= _multiplier;
-        player.StartCoroutine(DeactivateAfter(player, duration));
+        player.EnableSpeedBoostVFX(true);
+        player.StartCoroutine(player.DeactivateAfter(this, duration));
     }
 
     public void Deactivate(PlayerController player)
     {
+        if (!_active) return;
+
         _active = false;
         player.MovementMultiplier /= _multiplier;
-    }
-
-    private System.Collections.IEnumerator DeactivateAfter(PlayerController player, float duration)
-    {
-        yield return new WaitForSeconds(duration);
-        Deactivate(player);
+        player.EnableSpeedBoostVFX(false);
     }
 }

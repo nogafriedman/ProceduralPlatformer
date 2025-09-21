@@ -394,9 +394,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreManager: {fileID: 1156471976}
-  moveAcceleration: 360
+  moveAcceleration: 500
   maxSpeed: 5
-  jumpImpulse: 500
+  jumpImpulse: 800
   maxJumpImpulse: 1500
   HorizontalJumpBonus: 1000
   maxHorizontalBonus: 900
@@ -1789,7 +1789,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1518386180}
-  - component: {fileID: 1518386179}
   - component: {fileID: 1518386181}
   m_Layer: 0
   m_Name: SpeedboostSpawner
@@ -1798,18 +1797,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1518386179
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1518386178}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa90567833ba91f4ebf65a542e5be8c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1518386180
 Transform:
   m_ObjectHideFlags: 0
@@ -2364,7 +2351,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2045949365}
-  - component: {fileID: 2045949364}
   - component: {fileID: 2045949366}
   m_Layer: 0
   m_Name: JetpackSpawner
@@ -2373,18 +2359,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2045949364
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2045949363}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa90567833ba91f4ebf65a542e5be8c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &2045949365
 Transform:
   m_ObjectHideFlags: 0

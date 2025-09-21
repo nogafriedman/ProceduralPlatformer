@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 695144140429750906}
   - component: {fileID: 330387381061795316}
   - component: {fileID: 3628714095663906221}
-  - component: {fileID: 3309021499474416593}
+  - component: {fileID: 1677322824826215455}
   m_Layer: 9
   m_Name: PU Jetpack
   m_TagString: Untagged
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1698149209
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 5
   m_Sprite: {fileID: 67659261010511469, guid: 959f4109f609e8349a116087687dec24, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -163,7 +163,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &3309021499474416593
+--- !u!114 &1677322824826215455
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -172,7 +172,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3006052626316855017}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7389ee6a5a9517144ad53309b8ce1ad3, type: 3}
+  m_Script: {fileID: 11500000, guid: a69cb8523b5c5834688aef71d76106c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  durationSeconds: 8
+  duration: 8
