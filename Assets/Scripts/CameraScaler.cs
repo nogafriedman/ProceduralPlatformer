@@ -2,20 +2,35 @@ using UnityEngine;
 
 [ExecuteAlways]
 [RequireComponent(typeof(Camera))]
-public class CameraAutoFit2D : MonoBehaviour
+public class CameraScaler : MonoBehaviour
 {
-    [Min(1)] public int referenceWidth = 720;
-    [Min(1)] public int referenceHeight = 1600;
-    [Min(1)] public float pixelsPerUnit = 100f;
+    [Header("Reference Resolution")]
+    [Min(1)] [SerializeField] private int referenceWidth = 720;
+    [Min(1)] [SerializeField] private int referenceHeight = 1600;
+    [Min(1)] [SerializeField] private float pixelsPerUnit = 100f;
 
-    public enum FitMode { FitHeight, FitWidth, Fill, ContainWithBars }
-    public FitMode fit = FitMode.FitHeight;
+    [Header("Scaling Mode")]
+    public ScaleMode scaleMode = ScaleMode.FitHeight;
 
+    [Header("Interpolated Settings (only for Interpolated mode)")]
+    public float sizeAt16x9 = 8f;
+    public float sizeAt4x3 = 6.3f;
+
+    [Header("Safe Area")]
     public bool respectSafeArea = true;
 
     private Camera cam;
     private int lastW, lastH;
     private Rect lastSafe;
+
+    public enum ScaleMode
+    {
+        FitHeight,
+        FitWidth,
+        Fill,
+        ContainWithBars,
+        Interpolated
+    }
 
     private float DesignOrthoSize => referenceHeight / (2f * pixelsPerUnit);
 
@@ -59,32 +74,32 @@ public class CameraAutoFit2D : MonoBehaviour
         float targetAspect = usedW / usedH;
         float designAspect = (float)referenceWidth / referenceHeight;
 
-        Rect r = baseRect;
-        float ortho;
+        float ortho = DesignOrthoSize;
+        Rect viewport = baseRect;
 
-        switch (fit)
+        switch (scaleMode)
         {
-            case FitMode.FitHeight:
+            case ScaleMode.FitHeight:
                 ortho = DesignOrthoSize;
                 break;
 
-            case FitMode.FitWidth:
+            case ScaleMode.FitWidth:
                 ortho = referenceWidth / (2f * pixelsPerUnit * targetAspect);
                 break;
 
-            case FitMode.Fill:
+            case ScaleMode.Fill:
                 ortho = (targetAspect > designAspect)
                     ? referenceWidth / (2f * pixelsPerUnit * targetAspect)
                     : DesignOrthoSize;
                 break;
 
-            case FitMode.ContainWithBars:
+            case ScaleMode.ContainWithBars:
                 if (targetAspect > designAspect)
                 {
-                    // Pillar-box inside baseRect
+                    // Pillar-box
                     ortho = DesignOrthoSize;
                     float w01 = designAspect / targetAspect;
-                    r = new Rect(
+                    viewport = new Rect(
                         baseRect.x + baseRect.width * (1f - w01) * 0.5f,
                         baseRect.y,
                         baseRect.width * w01,
@@ -93,10 +108,10 @@ public class CameraAutoFit2D : MonoBehaviour
                 }
                 else
                 {
-                    // Letter-box inside baseRect
+                    // Letter-box
                     ortho = referenceWidth / (2f * pixelsPerUnit * targetAspect);
                     float h01 = targetAspect / designAspect;
-                    r = new Rect(
+                    viewport = new Rect(
                         baseRect.x,
                         baseRect.y + baseRect.height * (1f - h01) * 0.5f,
                         baseRect.width,
@@ -105,12 +120,16 @@ public class CameraAutoFit2D : MonoBehaviour
                 }
                 break;
 
-            default:
-                ortho = DesignOrthoSize;
+            case ScaleMode.Interpolated:
+                float aspect = (float)Screen.width / Screen.height;
+                float aspect16x9 = 16f / 9f;
+                float aspect4x3 = 4f / 3f;
+                float t = (aspect - aspect4x3) / (aspect16x9 - aspect4x3);
+                ortho = Mathf.Lerp(sizeAt4x3, sizeAt16x9, t);
                 break;
         }
 
-        cam.rect = r;
+        cam.rect = viewport;
         cam.orthographicSize = Mathf.Max(0.0001f, ortho);
     }
 

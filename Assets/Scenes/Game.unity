@@ -434,6 +434,7 @@ GameObject:
   - component: {fileID: 389515263}
   - component: {fileID: 389515262}
   - component: {fileID: 389515266}
+  - component: {fileID: 389515267}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -571,13 +572,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4670fdebe7a5421459a65c83a39a7dcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetObj: {fileID: 106243625}
+  target: {fileID: 106243632}
   startThreshold: 5
   catchUpThreshold: 1
   offsetBelowCamera: 1
   baseSpeed: 2
   speedStep: 1
   incrementInterval: 10
+--- !u!114 &389515267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 389515261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d146715244398014484ab26987163f8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  referenceWidth: 720
+  referenceHeight: 1600
+  pixelsPerUnit: 100
+  scaleMode: 0
+  sizeAt16x9: 8
+  sizeAt4x3: 6.3
+  respectSafeArea: 1
 --- !u!1 &469314116
 GameObject:
   m_ObjectHideFlags: 0
@@ -773,8 +793,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7389ee6a5a9517144ad53309b8ce1ad3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  durationSeconds: 8
-  _consumed: 0
 --- !u!50 &828602199
 Rigidbody2D:
   serializedVersion: 5
@@ -1811,16 +1829,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa90567833ba91f4ebf65a542e5be8c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerUpPrefabs:
-  - {fileID: 1567757820}
-  spawnEveryPlatforms: 20
-  nextSpawnFloor: 20
-  platformLayers:
-    m_Bits: 64
-  verticalOffset: 0.25
-  horizontalPadding: 0.3
-  overlapCheckSize: {x: 0.35, y: 0.35}
-  _powerupInstance: {fileID: 0}
 --- !u!4 &1518386180
 Transform:
   m_ObjectHideFlags: 0
@@ -1880,8 +1888,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbf6dbe351a356148ab893cc6c0477f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _consumed: 0
-  speedEffect: {fileID: 587577617666023954, guid: 460c4503fa03bd14ca1f914183017a6c, type: 3}
 --- !u!4 &1700467894 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2244983038475591215, guid: 6d510145766ef2e4fa966a94fdf24eb4, type: 3}
@@ -2636,16 +2642,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa90567833ba91f4ebf65a542e5be8c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerUpPrefabs:
-  - {fileID: 828602197}
-  spawnEveryPlatforms: 50
-  nextSpawnFloor: 20
-  platformLayers:
-    m_Bits: 64
-  verticalOffset: 0.25
-  horizontalPadding: 0.3
-  overlapCheckSize: {x: 0.35, y: 0.35}
-  _powerupInstance: {fileID: 0}
 --- !u!4 &2045949365
 Transform:
   m_ObjectHideFlags: 0
