@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 3
+  tags: []
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - Ground
+  - Wall
+  - Player
+  - PowerUp
+  - Button
+  - Background
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Background
+    uniqueID: 1187107531
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Platforms
+    uniqueID: 807523229
+    locked: 0
+  - name: Ground
+    uniqueID: 3500701465
+    locked: 0
+  - name: PowerUp
+    uniqueID: 1698149209
+    locked: 0
+  - name: Player
+    uniqueID: 471916243
+    locked: 0
+  - name: Button
+    uniqueID: 265868571
+    locked: 0
+  - name: Wall
+    uniqueID: 1118656525
+    locked: 0
+  - name: Floor
+    uniqueID: 2968867251
+    locked: 0
+  m_RenderingLayers:
+  - Default

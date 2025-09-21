@@ -1,0 +1,23 @@
+# ninja log v5
+1258	1348	1758198379204496159	/Users/bar/Documents/GitHub/IcyTower/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/1g1k3t4i/obj/arm64-v8a/libgame.so	c799892cd0f1e392
+0	1258	1758198379113109528	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	727b95b77d03f423
+1	1168	1758198379022280190	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	8be370512ef0c607
+2	1062	1758198378915801232	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	c445ad0f31dfde4d
+2	992	1758198378844588023	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	8a7597de24a870f2
+2	955	1758198378808611938	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	ea42f95432e3e5a
+1	976	1758198378828830361	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	5cd74fc03dca7baa
+1	924	1758198378774793942	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	1eb9a61cfcaccb68
+1	1024	1758198378877206891	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	47d8840b28f2b808
+256	383	1758198378238682725	/Users/bar/Documents/GitHub/IcyTower/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/1g1k3t4i/obj/arm64-v8a/libswappywrapper.so	ec1b34cc03bc27a3
+2	256	1758198378112112637	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	b54e1cfd73abfb61
+8	529	1758198573812967581	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	b54e1cfd73abfb61
+530	810	1758198574098942253	/Users/bar/Documents/GitHub/IcyTower/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/1g1k3t4i/obj/arm64-v8a/libswappywrapper.so	ec1b34cc03bc27a3
+3	1194	1758198574477013889	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	1eb9a61cfcaccb68
+3	1218	1758198574504563829	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	5cd74fc03dca7baa
+5	1227	1758198574511154178	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	8a7597de24a870f2
+4	1245	1758198574531548142	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	ea42f95432e3e5a
+3	1308	1758198574596316961	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	47d8840b28f2b808
+6	1336	1758198574624426194	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	c445ad0f31dfde4d
+3	1402	1758198574691217809	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	8be370512ef0c607
+2	1478	1758198574767576696	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	727b95b77d03f423
+1478	1569	1758198574859167495	/Users/bar/Documents/GitHub/IcyTower/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/1g1k3t4i/obj/arm64-v8a/libgame.so	c799892cd0f1e392
