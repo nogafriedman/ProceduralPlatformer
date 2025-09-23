@@ -31,9 +31,6 @@ public class SpawnManager : MonoBehaviour
     [Header("Platform Spawning")]
     [SerializeField] private float[] platformSpawnChances;
 
-    [Header("Platform Types")]
-    [SerializeField] private PowerUpSpawner2D[] powerUpSpawners;
-
     [Header("Platform Number Board")]
     [SerializeField] private GameObject boardPrefab;
 
@@ -47,15 +44,6 @@ public class SpawnManager : MonoBehaviour
 
     private void Awake()
     {
-        if (powerUpSpawners == null || powerUpSpawners.Length == 0)
-        {
-#if UNITY_2023_1_OR_NEWER
-            powerUpSpawners = UnityEngine.Object.FindObjectsByType<PowerUpSpawner2D>(FindObjectsSortMode.None);
-#else
-            powerUpSpawners = UnityEngine.Object.FindObjectsOfType<PowerUpSpawner2D>();
-#endif
-        }
-
         screenHalfWidth = Camera.main.orthographicSize * Camera.main.aspect;
         wallHeight = CalculateWallHeight();
         nextPlatformY = initialPlatformY;
@@ -117,10 +105,8 @@ public class SpawnManager : MonoBehaviour
             }
 
             platformPool.Add(platform);
-            nextPlatformY += platformSpacing;
 
-            foreach (var s in powerUpSpawners)
-                s.NotifyCreatedFloor(platform, nextPlatformY);
+            nextPlatformY += platformSpacing;
         }
     }
 
