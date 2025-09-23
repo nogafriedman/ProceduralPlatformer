@@ -2,6 +2,10 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+/// <summary>
+/// Controls the player character, handling input, movement, jumping,
+/// collisions with walls and platforms, scoring, and abilities.
+/// </summary>
 public class PlayerController : MonoBehaviour
 {
     public ScoreManager scoreManager;
@@ -191,17 +195,17 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D col)
-    {
-        if (col.TryGetComponent<IAbility>(out var ability))
-        {
-            Debug.Log("Picked up: " + ability.GetType().Name);
+    // private void OnTriggerEnter2D(Collider2D col)
+    // {
+    //     if (col.TryGetComponent<IAbility>(out var ability))
+    //     {
+    //         Debug.Log("Picked up: " + ability.GetType().Name);
 
-            ApplyAbility(ability, 5f);
+    //         ApplyAbility(ability, 5f);
 
-            Destroy(col.gameObject);
-        }
-    }
+    //         Destroy(col.gameObject);
+    //     }
+    // }
 
     public IEnumerator DeactivateAfter(IAbility ability, float duration)
     {

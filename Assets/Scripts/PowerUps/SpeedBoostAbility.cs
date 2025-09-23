@@ -1,3 +1,7 @@
+/// <summary>
+/// Ability that increases the player's horizontal movement speed
+/// by a given multiplier for a limited duration.
+/// </summary>
 public class SpeedBoostAbility : IAbility
 {
     private readonly float _multiplier;

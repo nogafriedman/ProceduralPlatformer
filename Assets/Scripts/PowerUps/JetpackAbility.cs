@@ -1,3 +1,7 @@
+/// <summary>
+/// Ability that enables jetpack flight for the player.
+/// While active, reduces gravity and applies thrust when jumping.
+/// </summary>
 public class JetpackAbility : IAbility
 {
     private bool _active;

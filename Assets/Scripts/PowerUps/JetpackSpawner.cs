@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// Spawns a jetpack power-up above newly created platforms.
+/// </summary>
 public class JetpackSpawner : PowerUpSpawner
 {
     [SerializeField] private GameObject jetpackPrefab;

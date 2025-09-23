@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// Spawns a speed boost power-up above newly created platforms.
+/// </summary>
 public class SpeedBoostSpawner : PowerUpSpawner
 {
     [SerializeField] private GameObject speedBoostPrefab;
