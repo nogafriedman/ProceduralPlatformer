@@ -13,18 +13,16 @@ public class PlayerController : MonoBehaviour
     private bool facingRight = true;
 
     [Header("Movement")]
-    public float moveAcceleration = 360f;
-    public float maxSpeed = 5f;
-    private float baseMoveAcceleration;
-    private float baseMaxSpeed;
+    [SerializeField] public float moveAcceleration = 360f;
+    [SerializeField] public float maxSpeed = 5f;
     public float MovementMultiplier { get; set; } = 1f;
 
     [Header("Jumping")]
     private bool jump = false;
-    public float jumpImpulse = 500f;
-    public float maxJumpImpulse = 1200f;
-    public float HorizontalJumpBonus = 100f;
-    public float maxHorizontalBonus = 200f;
+    [SerializeField] public float jumpImpulse = 500f;
+    [SerializeField] public float maxJumpImpulse = 1200f;
+    [SerializeField] public float HorizontalJumpBonus = 100f;
+    [SerializeField] public float maxHorizontalBonus = 200f;
 
     [Header("Airtime / Floatiness")]
     public float ascendGravityScale = 0.75f;
@@ -65,8 +63,6 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         groundMask = LayerMask.GetMask("Ground");
-        baseMoveAcceleration = moveAcceleration;
-        baseMaxSpeed = maxSpeed;
 
         if (jetpackVFX) jetpackVFX.SetActive(false);
         if (speedBoostVFX) speedBoostVFX.SetActive(false);
@@ -84,86 +80,109 @@ public class PlayerController : MonoBehaviour
         if (isJumping() && isGrounded)
         {
             jump = true;
-            sustainTimer = jumpSustainTime;
+            // sustainTimer = jumpSustainTime;
         }
     }
 
+    // V1
+    // private void FixedUpdate()
+    // {
+    //     float inputX = input.GetHorizontal();
+    //     float currSpeedX = rb.linearVelocity.x;
+
+    //     float accel = isGrounded ? moveAcceleration : moveAcceleration * 0.80f;
+
+    //     float boostedAcceleration = accel * MovementMultiplier;
+    //     float boostedMaxSpeed = maxSpeed * MovementMultiplier;
+
+    //     if (Mathf.Abs(inputX) > 0.05f)
+    //     {
+    //         rb.AddForce(new Vector2(inputX * boostedAcceleration, 0f));
+
+    //         if ((inputX > 0 && !facingRight) || (inputX < 0 && facingRight))
+    //         {
+    //             FlipFacing();
+    //         }
+    //     }
+    //     else
+    //     {
+    //         float decel = isGrounded ? 20f : 4f;
+    //         rb.linearVelocity = new Vector2(
+    //             Mathf.MoveTowards(currSpeedX, 0f, decel * Time.fixedDeltaTime),
+    //             rb.linearVelocity.y
+    //         );
+    //     }
+
+    //     float cap = isGrounded ? boostedMaxSpeed : boostedMaxSpeed * 0.95f;
+    //     rb.linearVelocity = new Vector2(
+    //         Mathf.Clamp(rb.linearVelocity.x, -cap, cap),
+    //         rb.linearVelocity.y
+    //     );
+
+    //     if (jump)
+    //     {
+    //         float horizontalBonus = Mathf.Min(Mathf.Abs(rb.linearVelocity.x) * HorizontalJumpBonus, maxHorizontalBonus);
+    //         float totalJumpPower = Mathf.Min(jumpImpulse + horizontalBonus, maxJumpImpulse);
+
+    //         AudioManager.Instance?.PlayJumpByForce(totalJumpPower, jumpImpulse, maxJumpImpulse);
+
+    //         rb.AddForce(Vector2.up * totalJumpPower, ForceMode2D.Force);
+    //         jump = false;
+    //     }
+
+    //     if (sustainTimer > 0f && isJumping() && rb.linearVelocity.y > 0f && !jetpackActive)
+    //     {
+    //         rb.AddForce(Vector2.up * jumpSustainForce, ForceMode2D.Force);
+    //         sustainTimer -= Time.fixedDeltaTime;
+    //     }
+
+    //     if (jetpackActive)
+    //     {
+    //         rb.gravityScale = jetpackGravityScale;
+
+    //         if (isJumping() && rb.linearVelocity.y < jetpackMaxVerticalSpeed)
+    //         {
+    //             rb.AddForce(Vector2.up * jetpackThrust, ForceMode2D.Force);
+    //         }
+    //     }
+    //     else
+    //     {
+    //         if (rb.linearVelocity.y > 0f)
+    //         {
+    //             rb.gravityScale = isJumping() ? ascendGravityScale : fallGravityScale;
+    //         }
+    //         else if (rb.linearVelocity.y < 0f)
+    //         {
+    //             rb.gravityScale = fallGravityScale;
+    //         }
+    //         else
+    //         {
+    //             rb.gravityScale = 1f;
+    //         }
+    //     }
+    // }
+
+    //V2
     private void FixedUpdate()
-    {
-        float inputX = input.GetHorizontal();
-        float currSpeedX = rb.linearVelocity.x;
+	{
+		float h = Input.GetAxis("Horizontal");
 
-        float accel = isGrounded ? moveAcceleration : moveAcceleration * 0.80f;
 
-        float boostedAcceleration = accel * MovementMultiplier;
-        float boostedMaxSpeed = maxSpeed * MovementMultiplier;
+		if(Mathf.Abs(h * rb.linearVelocity.x) < maxSpeed)
+			rb.AddForce(h * moveAcceleration * Vector2.right);
 
-        if (Mathf.Abs(inputX) > 0.05f)
-        {
-            rb.AddForce(new Vector2(inputX * boostedAcceleration, 0f));
+		if(Mathf.Abs(h) <= 0.05) rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
 
-            if ((inputX > 0 && !facingRight) || (inputX < 0 && facingRight))
-            {
-                FlipFacing();
-            }
-        }
-        else
-        {
-            float decel = isGrounded ? 20f : 4f;
-            rb.linearVelocity = new Vector2(
-                Mathf.MoveTowards(currSpeedX, 0f, decel * Time.fixedDeltaTime),
-                rb.linearVelocity.y
-            );
-        }
+		if((h > 0 && !facingRight) || (h < 0 && facingRight)) FlipFacing();
 
-        float cap = isGrounded ? boostedMaxSpeed : boostedMaxSpeed * 0.95f;
-        rb.linearVelocity = new Vector2(
-            Mathf.Clamp(rb.linearVelocity.x, -cap, cap),
-            rb.linearVelocity.y
-        );
-
-        if (jump)
-        {
-            float horizontalBonus = Mathf.Min(Mathf.Abs(rb.linearVelocity.x) * HorizontalJumpBonus, maxHorizontalBonus);
-            float totalJumpPower = Mathf.Min(jumpImpulse + horizontalBonus, maxJumpImpulse);
-
+		if(jump)
+		{
+			float totalJumpPower = jumpImpulse + Mathf.Abs(rb.linearVelocity.x) * HorizontalJumpBonus;
             AudioManager.Instance?.PlayJumpByForce(totalJumpPower, jumpImpulse, maxJumpImpulse);
-
-            rb.AddForce(Vector2.up * totalJumpPower, ForceMode2D.Force);
-            jump = false;
-        }
-
-        if (sustainTimer > 0f && isJumping() && rb.linearVelocity.y > 0f && !jetpackActive)
-        {
-            rb.AddForce(Vector2.up * jumpSustainForce, ForceMode2D.Force);
-            sustainTimer -= Time.fixedDeltaTime;
-        }
-
-        if (jetpackActive)
-        {
-            rb.gravityScale = jetpackGravityScale;
-
-            if (isJumping() && rb.linearVelocity.y < jetpackMaxVerticalSpeed)
-            {
-                rb.AddForce(Vector2.up * jetpackThrust, ForceMode2D.Force);
-            }
-        }
-        else
-        {
-            if (rb.linearVelocity.y > 0f)
-            {
-                rb.gravityScale = isJumping() ? ascendGravityScale : fallGravityScale;
-            }
-            else if (rb.linearVelocity.y < 0f)
-            {
-                rb.gravityScale = fallGravityScale;
-            }
-            else
-            {
-                rb.gravityScale = 1f;
-            }
-        }
-    }
+			rb.AddForce(Vector2.up * totalJumpPower);
+			jump = false;
+		}
+	}
 
     private void FlipFacing()
     {
@@ -195,17 +214,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // private void OnTriggerEnter2D(Collider2D col)
-    // {
-    //     if (col.TryGetComponent<IAbility>(out var ability))
-    //     {
-    //         Debug.Log("Picked up: " + ability.GetType().Name);
-
-    //         ApplyAbility(ability, 5f);
-
-    //         Destroy(col.gameObject);
-    //     }
-    // }
+    // Power Ups
 
     public IEnumerator DeactivateAfter(IAbility ability, float duration)
     {
@@ -217,6 +226,7 @@ public class PlayerController : MonoBehaviour
     public void ApplyAbility(IAbility ability, float duration)
     {
         ability.Activate(this, duration);
+        StartCoroutine(DeactivateAfter(ability, duration));
     }
 
     public void EnableJetpack(bool enable)
@@ -245,6 +255,8 @@ public class PlayerController : MonoBehaviour
         if (speedBoostVFX == null) return;
         speedBoostVFX.SetActive(enable);
     }
+
+    // Input
 
     private bool isJumping()
     {

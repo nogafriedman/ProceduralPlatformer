@@ -4,24 +4,19 @@
 /// </summary>
 public class JetpackAbility : IAbility
 {
-    private bool _active;
-
-    public bool IsActive => _active;
+    public bool IsActive { get; private set; }
 
     public void Activate(PlayerController player, float duration)
     {
-        if (_active) return;
-
-        _active = true;
+        if (IsActive) return;
+        IsActive = true;
         player.EnableJetpack(true);
-        player.StartCoroutine(player.DeactivateAfter(this, duration));
     }
 
     public void Deactivate(PlayerController player)
     {
-        if (!_active) return;
-
-        _active = false;
+        if (!IsActive) return;
+        IsActive = false;
         player.EnableJetpack(false);
     }
 }

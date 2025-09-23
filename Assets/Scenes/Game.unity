@@ -393,12 +393,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreManager: {fileID: 1156471976}
-  moveAcceleration: 500
+  moveAcceleration: 350
   maxSpeed: 5
   jumpImpulse: 800
-  maxJumpImpulse: 1500
-  HorizontalJumpBonus: 1000
-  maxHorizontalBonus: 900
+  maxJumpImpulse: 1300
+  HorizontalJumpBonus: 90
+  maxHorizontalBonus: 600
   ascendGravityScale: 0.75
   fallGravityScale: 1.5
   jumpSustainTime: 0.12
@@ -3108,7 +3108,7 @@ PrefabInstance:
       objectReference: {fileID: 6200000, guid: fbc4f94228f4173459cddc1ea158f1b6, type: 2}
     - target: {fileID: 8868669283643883440, guid: e4ca11e035d4a9949bc2bce2507044da, type: 3}
       propertyPath: m_GravityScale
-      value: 5
+      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6923738507254326262, guid: e4ca11e035d4a9949bc2bce2507044da, type: 3}

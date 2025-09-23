@@ -4,32 +4,28 @@
 /// </summary>
 public class SpeedBoostAbility : IAbility
 {
-    private readonly float _multiplier;
-    private bool _active;
+    private readonly float multiplier;
+    public bool IsActive { get; private set; }
 
     public SpeedBoostAbility(float multiplier)
     {
-        _multiplier = multiplier;
+        this.multiplier = multiplier;
     }
-
-    public bool IsActive => _active;
 
     public void Activate(PlayerController player, float duration)
     {
-        if (_active) return;
-
-        _active = true;
-        player.MovementMultiplier *= _multiplier;
+        if (IsActive) return;
+        IsActive = true;
+        player.MovementMultiplier *= multiplier;
         player.EnableSpeedBoostVFX(true);
-        player.StartCoroutine(player.DeactivateAfter(this, duration));
     }
 
     public void Deactivate(PlayerController player)
     {
-        if (!_active) return;
-
-        _active = false;
-        player.MovementMultiplier /= _multiplier;
+        if (!IsActive) return;
+        IsActive = false;
+        player.MovementMultiplier /= multiplier;
         player.EnableSpeedBoostVFX(false);
     }
 }
+
