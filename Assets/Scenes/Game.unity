@@ -180,7 +180,6 @@ MonoBehaviour:
   - 60
   - 20
   - 20
-  powerUpSpawners: []
   boardPrefab: {fileID: 3972503974204096241, guid: 2cd6bc9841533564592f206eadcda298, type: 3}
 --- !u!1001 &98323880
 PrefabInstance:
@@ -2996,8 +2995,24 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3428732191320492027, guid: e4ca11e035d4a9949bc2bce2507044da, type: 3}
+      propertyPath: m_Size.x
+      value: 2.6872468
+      objectReference: {fileID: 0}
+    - target: {fileID: 3428732191320492027, guid: e4ca11e035d4a9949bc2bce2507044da, type: 3}
+      propertyPath: m_Size.y
+      value: 5.0568237
+      objectReference: {fileID: 0}
+    - target: {fileID: 3428732191320492027, guid: e4ca11e035d4a9949bc2bce2507044da, type: 3}
       propertyPath: m_Material
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3428732191320492027, guid: e4ca11e035d4a9949bc2bce2507044da, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.056241896
+      objectReference: {fileID: 0}
+    - target: {fileID: 3428732191320492027, guid: e4ca11e035d4a9949bc2bce2507044da, type: 3}
+      propertyPath: m_Offset.y
+      value: 2.028412
       objectReference: {fileID: 0}
     - target: {fileID: 4142097077305382684, guid: e4ca11e035d4a9949bc2bce2507044da, type: 3}
       propertyPath: m_LocalScale.x
