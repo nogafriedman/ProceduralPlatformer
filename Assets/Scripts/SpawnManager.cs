@@ -38,7 +38,9 @@ public class SpawnManager : MonoBehaviour
 
     private readonly List<GameObject> leftWallPool = new List<GameObject>();
     private readonly List<GameObject> rightWallPool = new List<GameObject>();
-    private readonly List<GameObject> platformPool = new List<GameObject>();
+    // private readonly List<GameObject> platformPool = new List<GameObject>();
+    private readonly Dictionary<GameObject, Queue<GameObject>> platformPools = new();
+    private readonly List<GameObject> platformPool = new();
     private float nextWallY;
     private float nextPlatformY;
 
@@ -54,6 +56,11 @@ public class SpawnManager : MonoBehaviour
         var rightCol = rightWallPool[0].GetComponent<Collider2D>();
         platformXMin = leftCol.bounds.max.x;
         platformXMax = rightCol.bounds.min.x;   
+
+        foreach (var prefab in platformPrefabs)
+        {
+            platformPools[prefab] = new Queue<GameObject>();
+        }
 
         InitPlatforms();
     }
@@ -129,12 +136,16 @@ public class SpawnManager : MonoBehaviour
     {
         var oldPlatform = platformPool[0];
         platformPool.RemoveAt(0);
-        Destroy(oldPlatform);
+        RecyclePlatform(oldPlatform);
 
         var chosenPrefab = GetRandomPlatformPrefab();
-
         var x = UnityEngine.Random.Range(platformXMin, platformXMax);
-        var newPlatform = Instantiate(chosenPrefab, new Vector3(x, nextPlatformY, 0f), Quaternion.identity, transform);
+
+        var newPlatform = GetPooledPlatform(chosenPrefab);
+        // var newPlatform = Instantiate(chosenPrefab, new Vector3(x, nextPlatformY, 0f), Quaternion.identity, transform);
+
+        newPlatform.transform.position = new Vector3(x, nextPlatformY, 0f);
+        newPlatform.transform.SetParent(transform, false);
         platformPool.Add(newPlatform);
 
         var indexTag = newPlatform.GetComponent<PlatformIndex>() ?? newPlatform.AddComponent<PlatformIndex>();
@@ -150,6 +161,40 @@ public class SpawnManager : MonoBehaviour
 
         nextPlatformY += platformSpacing;
     }
+
+
+    // Helpers
+
+    private GameObject GetPooledPlatform(GameObject prefab)
+    {
+        if (platformPools.TryGetValue(prefab, out var pool) && pool.Count > 0)
+        {
+            var platform = pool.Dequeue();
+            platform.SetActive(true);
+            return platform;
+        }
+
+        // If none available, instantiate new
+        return Instantiate(prefab, transform);
+    }
+
+    private void RecyclePlatform(GameObject platform)
+    {
+        platform.SetActive(false);
+
+        foreach (var prefab in platformPrefabs)
+        {
+            if (platform.name.StartsWith(prefab.name))
+            {
+                platformPools[prefab].Enqueue(platform);
+                return;
+            }
+        }
+
+        // Fallback if no match
+        Destroy(platform);
+    }
+
 
     private GameObject GetRandomPlatformPrefab()
     {
