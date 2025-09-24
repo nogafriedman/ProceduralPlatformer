@@ -201,8 +201,15 @@ public class PlayerController : MonoBehaviour
     {
         if (IsInLayerMask(collision.gameObject, wallLayers))
         {
-            Vector2 v = new Vector2(rb.linearVelocity.x * wallBounceMultiplier, 0f);
-            rb.AddForce(v, ForceMode2D.Impulse);
+            Vector2 normal = collision.contacts[0].normal;
+            Vector2 reflected = Vector2.Reflect(rb.linearVelocity, normal);
+
+            if (jump)
+            {
+                float baseKick = 6f;
+                reflected.y += baseKick;
+            }
+            rb.linearVelocity = reflected;
         }
 
         if (IsInLayerMask(collision.gameObject, groundLayers) &&

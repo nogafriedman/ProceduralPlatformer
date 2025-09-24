@@ -16,7 +16,7 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private GameObject wallPrefab;
     [SerializeField] private int initialWallCount = 4;
     [SerializeField] private float wallSpawnAhead = 10f;
-    [SerializeField] private float wallXPadding = 0.5f;
+    [SerializeField] private float wallXPadding = 0.3f;
     private float wallHeight;
 
     [Header("Platforms")]
@@ -38,7 +38,6 @@ public class SpawnManager : MonoBehaviour
 
     private readonly List<GameObject> leftWallPool = new List<GameObject>();
     private readonly List<GameObject> rightWallPool = new List<GameObject>();
-    // private readonly List<GameObject> platformPool = new List<GameObject>();
     private readonly Dictionary<GameObject, Queue<GameObject>> platformPools = new();
     private readonly List<GameObject> platformPool = new();
     private float nextWallY;
@@ -142,7 +141,6 @@ public class SpawnManager : MonoBehaviour
         var x = UnityEngine.Random.Range(platformXMin, platformXMax);
 
         var newPlatform = GetPooledPlatform(chosenPrefab);
-        // var newPlatform = Instantiate(chosenPrefab, new Vector3(x, nextPlatformY, 0f), Quaternion.identity, transform);
 
         newPlatform.transform.position = new Vector3(x, nextPlatformY, 0f);
         newPlatform.transform.SetParent(transform, false);

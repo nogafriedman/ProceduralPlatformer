@@ -167,10 +167,11 @@ MonoBehaviour:
   wallPrefab: {fileID: 6762616780599618340, guid: 2afd3d04d030a384fbe24a39ec82f3da, type: 3}
   initialWallCount: 10
   wallSpawnAhead: 20
-  wallXPadding: 0.5
+  wallXPadding: -17
   platformPrefabs:
   - {fileID: 3954955296957863119, guid: f48a47176e7dad64eb74bc4bf4256a8f, type: 3}
   - {fileID: 3529376136843810074, guid: 789afda052812764c8563383c15c1101, type: 3}
+  - {fileID: 5627351571208795576, guid: 5538be88c5cd98343ab80c9346da078b, type: 3}
   - {fileID: 3185625097653772584, guid: 3696de53c431ae54398ed19cf1a258fe, type: 3}
   initialPlatformCount: 30
   platformSpawnAhead: 10
@@ -178,7 +179,8 @@ MonoBehaviour:
   initialPlatformY: 1.5
   platformSpawnChances:
   - 60
-  - 20
+  - 10
+  - 10
   - 20
   boardPrefab: {fileID: 3972503974204096241, guid: 2cd6bc9841533564592f206eadcda298, type: 3}
 --- !u!1001 &98323880
