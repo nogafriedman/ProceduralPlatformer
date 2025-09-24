@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 1834449445880334452}
   - component: {fileID: 2662357790220060374}
   m_Layer: 6
-  m_Name: SticyPlatform
+  m_Name: StickyPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
