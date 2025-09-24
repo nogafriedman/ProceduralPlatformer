@@ -36,10 +36,13 @@ public class SpawnManager : MonoBehaviour
 
     private int nextFloorIndex = 1;
 
+    [Header("Pools")]
+
     private readonly List<GameObject> leftWallPool = new List<GameObject>();
     private readonly List<GameObject> rightWallPool = new List<GameObject>();
     private readonly Dictionary<GameObject, Queue<GameObject>> platformPools = new();
     private readonly List<GameObject> platformPool = new();
+    private readonly Queue<GameObject> boardPool = new Queue<GameObject>();
     private float nextWallY;
     private float nextPlatformY;
 
@@ -54,7 +57,7 @@ public class SpawnManager : MonoBehaviour
         var leftCol = leftWallPool[0].GetComponent<Collider2D>();
         var rightCol = rightWallPool[0].GetComponent<Collider2D>();
         platformXMin = leftCol.bounds.max.x;
-        platformXMax = rightCol.bounds.min.x;   
+        platformXMax = rightCol.bounds.min.x;
 
         foreach (var prefab in platformPrefabs)
         {
@@ -135,6 +138,14 @@ public class SpawnManager : MonoBehaviour
     {
         var oldPlatform = platformPool[0];
         platformPool.RemoveAt(0);
+
+        foreach (Transform child in oldPlatform.transform)
+        {
+        if (child.CompareTag("Board"))
+        {
+            RecycleBoard(child.gameObject);
+        }
+        }
         RecyclePlatform(oldPlatform);
 
         var chosenPrefab = GetRandomPlatformPrefab();
@@ -188,9 +199,6 @@ public class SpawnManager : MonoBehaviour
                 return;
             }
         }
-
-        // Fallback if no match
-        Destroy(platform);
     }
 
 
@@ -231,32 +239,72 @@ public class SpawnManager : MonoBehaviour
         return 1f;  // Fallback if no SpriteRenderer
     }
 
-        private void SpawnBoard(int floorNumber, Transform platform)
+    private void SpawnBoard(int floorNumber, Transform platform)
+    {
+        if (boardPrefab == null) return;
+
+        GameObject board;
+
+        if (boardPool.Count > 0)
         {
-            if (boardPrefab != null)
-            {
-                var col = platform.GetComponentInChildren<Collider2D>();
-                float platformTop = platform.position.y;
-                if (col != null)
-                    platformTop = col.bounds.max.y;
-
-                Vector3 pos = new Vector3(platform.position.x, platformTop, 0f);
-
-                var board = Instantiate(boardPrefab, pos, Quaternion.identity, platform);
-
-                Vector3 parentScale = platform.localScale;
-                board.transform.localScale = new Vector3(
-                    0.7f / parentScale.x,
-                    0.7f / parentScale.y,
-                    1f / parentScale.z
-                );
-
-                board.transform.localRotation = Quaternion.identity;
-                board.transform.localPosition += new Vector3(0.8f, 0f, 0f);
-
-                var text = board.GetComponentInChildren<TMPro.TextMeshPro>();
-                if (text != null)
-                    text.text = floorNumber.ToString();
-            }
+            board = boardPool.Dequeue();
+            board.SetActive(true);
         }
+        else
+        {
+            board = Instantiate(boardPrefab);
+        }
+
+        board.transform.SetParent(platform, false);
+
+        var col = platform.GetComponentInChildren<Collider2D>();
+        float platformTop = (col != null) ? col.bounds.max.y : platform.position.y;
+
+        board.transform.position = new Vector3(platform.position.x, platformTop, 0f);
+        board.transform.localRotation = Quaternion.identity;
+        board.transform.localPosition += new Vector3(0.8f, 0f, 0f);
+
+        // Reset scale relative to parent
+        Vector3 parentScale = platform.localScale;
+        board.transform.localScale = new Vector3(
+            0.7f / parentScale.x,
+            0.7f / parentScale.y,
+            1f / parentScale.z
+        );
+
+        var text = board.GetComponentInChildren<TMPro.TextMeshPro>();
+        if (text != null)
+            text.text = floorNumber.ToString();
+
+        // var col = platform.GetComponentInChildren<Collider2D>();
+        //         float platformTop = platform.position.y;
+        //         if (col != null)
+        //             platformTop = col.bounds.max.y;
+
+        //         Vector3 pos = new Vector3(platform.position.x, platformTop, 0f);
+
+        //         var board = Instantiate(boardPrefab, pos, Quaternion.identity, platform);
+
+        //         Vector3 parentScale = platform.localScale;
+        //         board.transform.localScale = new Vector3(
+        //             0.7f / parentScale.x,
+        //             0.7f / parentScale.y,
+        //             1f / parentScale.z
+        //         );
+
+        //         board.transform.localRotation = Quaternion.identity;
+        //         board.transform.localPosition += new Vector3(0.8f, 0f, 0f);
+
+        //         var text = board.GetComponentInChildren<TMPro.TextMeshPro>();
+        //         if (text != null)
+        //             text.text = floorNumber.ToString();
+        //     }
+    }
+    private void RecycleBoard(GameObject board)
+    {
+        board.SetActive(false);
+        board.transform.SetParent(transform, false); // detach
+        boardPool.Enqueue(board);
+    }
+
 }
