@@ -13,27 +13,27 @@ public class PlayerController : MonoBehaviour
     private bool facingRight = true;
 
     [Header("Movement")]
-    [SerializeField] public float moveAcceleration = 360f;
-    [SerializeField] public float maxSpeed = 5f;
+    [SerializeField] private float moveAcceleration = 360f;
+    [SerializeField] private float maxSpeed = 5f;
     public float MovementMultiplier { get; set; } = 1f;
 
     [Header("Jumping")]
     private bool jump = false;
-    [SerializeField] public float jumpImpulse = 500f;
-    [SerializeField] public float maxJumpImpulse = 1200f;
-    [SerializeField] public float HorizontalJumpBonus = 100f;
-    [SerializeField] public float maxHorizontalBonus = 200f;
+    [SerializeField] private float jumpImpulse = 500f;
+    [SerializeField] private float maxJumpImpulse = 1200f;
+    [SerializeField] private float HorizontalJumpBonus = 100f;
+    [SerializeField] private float maxHorizontalBonus = 200f;
 
     [Header("Airtime / Floatiness")]
-    public float ascendGravityScale = 0.75f;
-    public float fallGravityScale = 1.5f;
-    public float jumpSustainTime = 0.12f;
-    public float jumpSustainForce = 18f;
+    private float ascendGravityScale = 0.75f;
+    private float fallGravityScale = 1.5f;
+    private float jumpSustainTime = 0.12f;
+    private float jumpSustainForce = 18f;
     private float sustainTimer;
 
     [Header("Walls")]
-    public float wallBounceMultiplier = 1.25f;
-    public float maxBounceSpeed = 8f;
+    private float wallBounceMultiplier = 1.25f;
+    private float maxBounceSpeed = 8f;
 
     [Header("GroundCheck")]
     private bool isGrounded;
@@ -167,7 +167,6 @@ public class PlayerController : MonoBehaviour
 	{
 		float h = Input.GetAxis("Horizontal");
 
-
 		if(Mathf.Abs(h * rb.linearVelocity.x) < maxSpeed)
 			rb.AddForce(h * moveAcceleration * Vector2.right);
 
@@ -223,7 +222,7 @@ public class PlayerController : MonoBehaviour
 
     // Power Ups
 
-    public IEnumerator DeactivateAfter(IAbility ability, float duration)
+    private IEnumerator DeactivateAfter(IAbility ability, float duration)
     {
         yield return new WaitForSeconds(duration);
         ability.Deactivate(this);

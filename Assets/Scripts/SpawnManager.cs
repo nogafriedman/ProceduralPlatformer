@@ -20,7 +20,7 @@ public class SpawnManager : MonoBehaviour
     private float wallHeight;
 
     [Header("Platforms")]
-    [SerializeField] public GameObject[] platformPrefabs;
+    [SerializeField] private GameObject[] platformPrefabs;
     [SerializeField] private int initialPlatformCount = 10;
     [SerializeField] private float platformSpawnAhead = 10f;
     [SerializeField] private float platformSpacing = 3f;

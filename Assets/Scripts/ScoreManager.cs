@@ -11,41 +11,38 @@ public class ScoreManager : MonoBehaviour
     public int LastLandedFloor { get; private set; } = 0;
 
     // combo state
-    public int comboJumpCount = 0; // how many multi-floor jumps in current combo
-    public int comboFloorsTotal = 0; // sum of floors skipped in this combo
-    public float comboTimerLeft = 0f;
-    public int confirmedComboScore = 0; // sum(comboFloorsTotal^2)
-    [SerializeField] public ParticleSystem comboEffect;
+    private int comboJumpCount = 0; // how many multi-floor jumps in current combo
+    private int comboFloorsTotal = 0; // sum of floors skipped in this combo
+    private float comboTimerLeft = 0f;
+    private int confirmedComboScore = 0; // sum(comboFloorsTotal^2)
+    [SerializeField] private ParticleSystem comboEffect;
     [SerializeField] private Transform fxAnchor;
 
-    public int totalScore = 0;
-    public int CurrentScore => HighestFloor * 10 + confirmedComboScore;
+    private int CurrentScore => HighestFloor * 10 + confirmedComboScore;
     private bool comboActive => comboJumpCount > 0;
 
     // effects
-    [SerializeField] private int milestoneStep = 100;
+    private int milestoneStep = 100;
     private int nextMilestone = 100;
 
     //UI
     [Header("UI")]
     [SerializeField] private TextMeshProUGUI scoreText;
-
-    [Header("Combo UI Elements")]
     [SerializeField] private Image comboFillBar;
 
 
-    void Start()
+    private void Start()
     {
         UpdateScoreDisplay();
     }
 
-    void Update()
+    private void Update()
     {
         UpdateComboTimeout();
         UpdateComboUI(); 
     }
 
-    public void UpdateComboTimeout()
+    private void UpdateComboTimeout()
     {
         comboTimerLeft -= Time.deltaTime;
         if (comboActive && comboTimerLeft <= 0f)
@@ -54,7 +51,7 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
-    public void SetHighestFloor(int floor)
+    private void SetHighestFloor(int floor)
     {
         if (floor > HighestFloor)
         {
@@ -81,7 +78,7 @@ public class ScoreManager : MonoBehaviour
         UpdateScoreDisplay();
     }
 
-    public void UpdateCombo(int floor)
+    private void UpdateCombo(int floor)
     {
         int diff = floor - LastLandedFloor;
 
@@ -132,7 +129,7 @@ public class ScoreManager : MonoBehaviour
         UpdateComboUI();
     }
 
-    public int GameOverScore() => CurrentScore;
+    private int GameOverScore() => CurrentScore;
 
     private void PlayComboStartFX()
     {
@@ -140,13 +137,6 @@ public class ScoreManager : MonoBehaviour
         // ParticlePool.Instance.PlayBurstWorld(pos, Quaternion.identity);
         // ParticlePool.Instance.PlayBurstAttached(fxAnchor, Vector3.zero);
         comboEffect.Play();
-    }
-
-    // helper
-    private void LogScore(string context = "")
-    {
-        string msg = $"[SCORE] {context} | Floor={HighestFloor}, Base={HighestFloor * 10}, " +
-                     $"Combos={confirmedComboScore}, Total={CurrentScore}";
     }
 
     public void ResetScore()
@@ -157,13 +147,12 @@ public class ScoreManager : MonoBehaviour
         comboFloorsTotal = 0;
         comboTimerLeft = 0f;
         confirmedComboScore = 0;
-        totalScore = 0;
         nextMilestone = milestoneStep;
         UpdateScoreDisplay();
         UpdateComboUI();
     }
 
-    public void UpdateScoreDisplay()
+    private void UpdateScoreDisplay()
     {        
         if (scoreText != null)
         {

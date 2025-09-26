@@ -27,7 +27,7 @@ using UnityEngine;
 
 public class LoopingBackground : MonoBehaviour
 {
-    [SerializeField] private float extraSpace = 0.1f;
+    [SerializeField] private float extraSpace = 0.0f;
     [SerializeField] private int totalTiles = 3;
 
     private float quadHeight;
