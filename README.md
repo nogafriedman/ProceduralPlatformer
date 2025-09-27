@@ -51,7 +51,7 @@ SpawnManager - Spawns endless platforms and walls, tracks floor count, and spawn
 PowerUpPickup (abstract) - Generic pickup behavior, linked to:  
   JetpackPickup  
   SpeedBoostPickup  
-IAbility (interface) - Defines Activate and Deactivate, implemented by: 
+IAbility (interface) - Defines Activate and Deactivate, implemented by:  
   JetpackAbility  
   SpeedBoostAbility  
 
