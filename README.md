@@ -68,6 +68,6 @@ Next steps: animations, scoreboard, level progression, general polish, and exten
 
 <p align="center">
     <img src="https://github.com/user-attachments/assets/5636648a-8c13-4651-877a-7555197c0fb2" alt="Image" width="250">
-  <img src="https://github.com/user-attachments/assets/170733e1-08e9-44dd-9ba7-29ed4bc0d51d" alt="Image 1" width="250">
   <img src="https://github.com/user-attachments/assets/0ca07f3b-2c21-4b8d-a094-89a3aaa4a116" alt="Image 3" width="250">
+  <img src="https://github.com/user-attachments/assets/170733e1-08e9-44dd-9ba7-29ed4bc0d51d" alt="Image 1" width="250">
 </p>
