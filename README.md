@@ -49,11 +49,11 @@ Class Structure (simplified)
 PlayerController - Handles movement, physics, wall bouncing, and applying abilities.  
 SpawnManager - Spawns endless platforms and walls, tracks floor count, and spawns floor boards.  
 PowerUpPickup (abstract) - Generic pickup behavior, linked to:  
-  1. JetpackPickup  
-  2. SpeedBoostPickup  
-IAbility (interface) - Defines Activate and Deactivate, implemented by:  
-  1. JetpackAbility  
-  2. SpeedBoostAbility  
+  JetpackPickup  
+  SpeedBoostPickup  
+IAbility (interface) - Defines Activate and Deactivate, implemented by: 
+  JetpackAbility  
+  SpeedBoostAbility  
 
 Project Status
 - Core gameplay loop functional (movement, spawning, scoring, power-ups).
