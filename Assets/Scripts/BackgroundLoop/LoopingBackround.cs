@@ -27,7 +27,7 @@ using UnityEngine;
 
 public class LoopingBackground : MonoBehaviour
 {
-    [SerializeField] private float extraSpace = 0.0f;
+    [SerializeField] private float extraSpace = 0.1f;
     [SerializeField] private int totalTiles = 3;
 
     private float quadHeight;
@@ -46,7 +46,7 @@ public class LoopingBackground : MonoBehaviour
 
         if (quadTop < cameraBottom - extraSpace)
         {
-            transform.position += new Vector3(0f, quadHeight * totalTiles, 0f);
+            transform.position += new Vector3(0f, quadHeight * (totalTiles - 1), 0f);
         }
     }
 }
