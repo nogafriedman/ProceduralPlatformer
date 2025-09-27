@@ -22,7 +22,9 @@ It is also our first experience with Unity, making this both a learning journey 
 Jetpack- sustained upward thrust with reduced gravity.  
 Speed Boost- increased horizontal acceleration and visual feedback.  
 * The camera speeds up the higher you climb, increasing difficulty over time.  
-* Every 10th platform is marked with the floor number, visualizing player progression.  
+* Every 10th platform is marked with the floor number, visualizing player progression.
+* Background music is played and sound effects are triggered on jumps and progression.  
+* Main Menu and game instructions are featured on game start.
 
 We created an extensible input provider interface and kept the game logic generic, so the game can easily be extended to PC and other platforms.
 
@@ -47,11 +49,11 @@ Class Structure (simplified)
 PlayerController - Handles movement, physics, wall bouncing, and applying abilities.  
 SpawnManager - Spawns endless platforms and walls, tracks floor count, and spawns floor boards.  
 PowerUpPickup (abstract) - Generic pickup behavior, linked to:  
-  JetpackPickup  
-  SpeedBoostPickup  
+  1. JetpackPickup  
+  2. SpeedBoostPickup  
 IAbility (interface) - Defines Activate and Deactivate, implemented by:  
-  JetpackAbility  
-  SpeedBoostAbility  
+  1. JetpackAbility  
+  2. SpeedBoostAbility  
 
 Project Status
 - Core gameplay loop functional (movement, spawning, scoring, power-ups).
