@@ -66,7 +66,7 @@ Project Status
 
 Next steps: animations, scoreboard, level progression, general polish, and extended platform/power-up types.
 
-[![Download APK](https://img.shields.io/badge/Download-APK-brightgreen?style=for-the-badge&logo=android)](https://github.com/nogafriedman/ProceduralPlatformer/releases/latest/download/NuclearTower.apk)
+[![Download APK](https://img.shields.io/badge/Download-APK-brightgreen?style=for-the-badge&logo=android)](https://github.com/nogafriedman/ProceduralPlatformer/releases/download/v.1.0.0/NuclearTower.apk)
 
 
 <p align="center">
