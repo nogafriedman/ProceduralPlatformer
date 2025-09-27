@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/89f9c599-7cba-4183-a50a-4780173578c6" alt="Image 2" width="250">
+</p>
+
 Icy Tower-Inspired Platformer
 
 A 2D vertical platformer prototype built in Unity (C#), inspired by Icy Tower.  
@@ -63,10 +67,7 @@ Project Status
 Next steps: animations, scoreboard, level progression, general polish, and extended platform/power-up types.
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/5636648a-8c13-4651-877a-7555197c0fb2" alt="Image" width="350">
-</p>
-<p align="center">
+    <img src="https://github.com/user-attachments/assets/5636648a-8c13-4651-877a-7555197c0fb2" alt="Image" width="250">
   <img src="https://github.com/user-attachments/assets/170733e1-08e9-44dd-9ba7-29ed4bc0d51d" alt="Image 1" width="250">
-  <img src="https://github.com/user-attachments/assets/89f9c599-7cba-4183-a50a-4780173578c6" alt="Image 2" width="250">
   <img src="https://github.com/user-attachments/assets/0ca07f3b-2c21-4b8d-a094-89a3aaa4a116" alt="Image 3" width="250">
 </p>
