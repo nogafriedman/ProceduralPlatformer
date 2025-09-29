@@ -17,14 +17,14 @@ It is also our first experience with Unity, making this both a learning journey 
   Climbing to higher floors.  
   Achieving combo jumps that skip multiple platforms at once.  
 * Platform variety adds depth and unpredictability:  
-  Normal platforms  
-  Moving platforms  
-  Sticky platforms  
-  Bouncy platforms  
+  * Normal platforms  
+  * Moving platforms  
+  * Sticky platforms  
+  * Bouncy platforms  
 (more types planned)  
 * Power-up system introduces temporary abilities such as:  
-Jetpack- sustained upward thrust with reduced gravity.  
-Speed Boost- increased horizontal acceleration and visual feedback.  
+  * Jetpack- sustained upward thrust with reduced gravity.  
+  * Speed Boost- increased horizontal acceleration and visual feedback.  
 * The camera speeds up the higher you climb, increasing difficulty over time.  
 * Every 10th platform is marked with the floor number, visualizing player progression.
 * Background music is played and sound effects are triggered on jumps and progression.  
@@ -36,35 +36,35 @@ We created an extensible input provider interface and kept the game logic generi
 
 This project was also an exercise in clean code architecture and object-oriented programming, and we tried to follow core principles:  
 
-Interfaces for extensibility:
+__Interfaces for extensibility:__  
 - IAbility defines how new power-ups behave.
 - InterfacePlayerInput abstracts away input sources (keyboard, touch, etc).
 
-Abstract base classes
+__Abstract base classes:__
 - PowerUpPickup handles collision detection and ability application, letting derived classes only define the specific ability.
 
-Events & decoupling
+__Events & decoupling:__
 - SpawnManager emits OnPlatformSpawned events, which power-up spawners or other systems can subscribe to without tight coupling.
 
-Pooling
+__Pooling:__
 - Instead of destroying/instantiating objects repeatedly, platforms and boards are reused to improve performance and stability.
 
-# Class Structure (simplified)   
+__Class Structure (simplified)__:  
 - PlayerController - Handles movement, physics, wall bouncing, and applying abilities.  
 - SpawnManager - Spawns endless platforms and walls, tracks floor count, and spawns floor boards.  
 - PowerUpPickup (abstract) - Generic pickup behavior, linked to:  
-  JetpackPickup  
-  SpeedBoostPickup  
+  - JetpackPickup  
+  - SpeedBoostPickup  
 - IAbility (interface) - Defines Activate and Deactivate, implemented by:  
-  JetpackAbility  
-  SpeedBoostAbility  
+  - JetpackAbility  
+  - SpeedBoostAbility  
 
 # Project Status
 - Core gameplay loop functional (movement, spawning, scoring, power-ups).
 - UI and overall look is being polished.
 - Improvements to player movement and jumps ongoing.
 
-Next steps: animations, scoreboard, level progression, general polish, and extended platform/power-up types.
+__Next steps:__ animations, scoreboard, level progression, general polish, and extended platform/power-up types.
 
 [![Download APK](https://img.shields.io/badge/Download-APK-brightgreen?style=for-the-badge&logo=android)](https://github.com/nogafriedman/ProceduralPlatformer/releases/download/v.1.0.0/NuclearTower.apk)
 
