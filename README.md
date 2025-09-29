@@ -2,14 +2,14 @@
   <img src="https://github.com/user-attachments/assets/89f9c599-7cba-4183-a50a-4780173578c6" alt="Image 2" width="250">
 </p>
 
-Icy Tower-Inspired Platformer
+# Icy Tower-Inspired Platformer
 
 A 2D vertical platformer prototype built in Unity (C#), inspired by Icy Tower.  
 This project was developed during the QueenB Bootcamp as part of a team of 3 developers, with most of the work completed in a 5-day sprint.  
 The bootcamp focused on mobile game development, and since we didn't find many mobile implementations of the nostalgic Icy Tower we all loved, we chose to create a mobile-friendly version.  
 It is also our first experience with Unity, making this both a learning journey and an opportunity to refine our skills in game development and object-oriented design.
 
-/// Gameplay
+# Gameplay
 
 * The player jumps upward on endless platforms while the camera scrolls with them.  
 * Falling below the camera ends the game.  
@@ -32,7 +32,7 @@ Speed Boost- increased horizontal acceleration and visual feedback.
 
 We created an extensible input provider interface and kept the game logic generic, so the game can easily be extended to PC and other platforms.
 
-/// Design   
+# Design   
 
 This project was also an exercise in clean code architecture and object-oriented programming, and we tried to follow core principles:  
 
@@ -59,7 +59,7 @@ IAbility (interface) - Defines Activate and Deactivate, implemented by:
   JetpackAbility  
   SpeedBoostAbility  
 
-Project Status
+# Project Status
 - Core gameplay loop functional (movement, spawning, scoring, power-ups).
 - UI and overall look is being polished.
 - Improvements to player movement and jumps ongoing.
