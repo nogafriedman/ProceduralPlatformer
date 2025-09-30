@@ -14,8 +14,8 @@ It is also our first experience with Unity, making this both a learning journey 
 * The player jumps upward on endless platforms while the camera scrolls with them.  
 * Falling below the camera ends the game.  
 * Score is earned by:  
-  Climbing to higher floors.  
-  Achieving combo jumps that skip multiple platforms at once.  
+  * Climbing to higher floors.  
+  * Achieving combo jumps that skip multiple platforms at once.  
 * Platform variety adds depth and unpredictability:  
   * Normal platforms  
   * Moving platforms  
@@ -68,6 +68,9 @@ __Next steps:__ animations, scoreboard, level progression, general polish, and e
 
 [![Download APK](https://img.shields.io/badge/Download-APK-brightgreen?style=for-the-badge&logo=android)](https://github.com/nogafriedman/ProceduralPlatformer/releases/download/v.1.0.0/NuclearTower.apk)
 
+# Contributors
+- [Lihi Cohen](https://github.com/lihicohen122)
+- [Bar Mor](https://github.com/ItsBarMor)
 
 <p align="center">
     <img src="https://github.com/user-attachments/assets/5636648a-8c13-4651-877a-7555197c0fb2" alt="Image" width="250">
